@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Health Care: servicios de salud ambulatorios con 12 clinicas en EEUU y Reino Unido."
+    />
+    <title>Health Care | Salud Ambulatoria</title>
+    <script>
+      tailwind = {
+        config: {
+          theme: {
+            extend: {
+              colors: {
+                medical: {
+                  50: "#f4fbff",
+                  100: "#e6f4ff",
+                  200: "#c8e7ff",
+                  300: "#9dd5ff",
+                  400: "#64baff",
+                  500: "#3297f2",
+                  600: "#1f75d4",
+                  700: "#1d5fb0",
+                  800: "#1d4f90",
+                  900: "#1c4277"
+                },
+                healing: {
+                  100: "#e9f8f4",
+                  500: "#2fa785",
+                  700: "#1f7d65"
+                }
+              }
+            }
+          }
+        }
+      };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gradient-to-b from-medical-50 via-white to-medical-100 text-slate-800">
+    <header class="sticky top-0 z-50 border-b border-medical-200/70 bg-white/95 backdrop-blur">
+      <div class="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+        <a href="#inicio" aria-label="Health Care inicio">
+          <img
+            src="./img/Gemini_Generated_Image_h2jfl6h2jfl6h2jf.png"
+            alt="Health Care Ambulatory Health Services"
+            class="h-12 w-auto sm:h-14"
+          />
+        </a>
+        <nav aria-label="Principal">
+          <ul class="flex flex-wrap items-center gap-2 text-sm font-semibold text-medical-800 sm:gap-3 md:gap-4">
+            <li><a class="rounded-md px-2 py-1 hover:bg-medical-100" href="#inicio">Inicio</a></li>
+            <li>
+              <a class="rounded-md px-2 py-1 hover:bg-medical-100" href="#servicios">Servicios</a>
+            </li>
+            <li>
+              <a class="rounded-md px-2 py-1 hover:bg-medical-100" href="#caracteristicas"
+                >Por que elegirnos</a
+              >
+            </li>
+            <li>
+              <a class="rounded-md px-2 py-1 hover:bg-medical-100" href="#beneficios">Beneficios</a>
+            </li>
+            <li>
+              <a class="rounded-md px-2 py-1 hover:bg-medical-100" href="#experiencia">Experiencia</a>
+            </li>
+            <li>
+              <a class="rounded-md px-2 py-1 hover:bg-medical-100" href="./registro.html">Registro</a>
+            </li>
+            <li><a class="rounded-md px-2 py-1 hover:bg-medical-100" href="#contacto">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section id="inicio" class="grid gap-8 py-14 md:grid-cols-2 md:items-center">
+        <div>
+          <p class="inline-flex rounded-full border border-healing-500/30 bg-healing-100 px-3 py-1 text-xs font-bold uppercase tracking-wide text-healing-700">
+            Salud ambulatoria internacional
+          </p>
+          <h1 class="mt-4 text-3xl font-extrabold leading-tight text-medical-900 sm:text-4xl lg:text-5xl">
+            Atencion medica cercana, continua y confiable para toda tu familia.
+          </h1>
+          <p class="mt-5 text-base leading-relaxed text-slate-600 sm:text-lg">
+            En Health Care conectamos atencion primaria, especialistas, manejo de enfermedades cronicas
+            y programas de salud preventiva en una sola red. Operamos 12 clinicas: 9 en EEUU (Texas,
+            Florida y Georgia) y 3 en Reino Unido (Londres y Manchester).
+          </p>
+          <p class="mt-3 text-base leading-relaxed text-slate-600 sm:text-lg">
+            Nuestro objetivo es reducir tiempos de espera, mejorar la continuidad del
+            tratamiento y acompanarte con planes de cuidado personalizados para que vivas con mayor
+            bienestar.
+          </p>
+          <ul
+            aria-label="Beneficios principales de Health Care"
+            class="mt-4 space-y-2 text-sm text-slate-700 sm:text-base"
+          >
+            <li>Coordinacion integral entre medicos generales y especialistas.</li>
+            <li>Seguimiento activo para condiciones cronicas y control de riesgos.</li>
+            <li>Programas preventivos enfocados en resultados medibles de salud.</li>
+          </ul>
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a
+              href="#contacto"
+              class="inline-flex items-center rounded-lg bg-medical-700 px-5 py-3 text-sm font-bold text-white shadow-sm hover:bg-medical-800"
+              >Agenda tu cita</a
+            >
+            <a
+              href="#caracteristicas"
+              class="inline-flex items-center rounded-lg border border-medical-300 bg-white px-5 py-3 text-sm font-bold text-medical-800 hover:bg-medical-50"
+              >Conoce nuestros diferenciales</a
+            >
+            <a
+              href="./registro.html"
+              class="inline-flex items-center rounded-lg border border-healing-500/40 bg-healing-100 px-5 py-3 text-sm font-bold text-healing-700 hover:bg-healing-100/70"
+              >Iniciar registro</a
+            >
+          </div>
+        </div>
+
+        <aside
+          aria-label="Resumen de cobertura"
+          class="rounded-2xl border border-medical-200 bg-white p-6 shadow-sm"
+        >
+          <h2 class="text-lg font-bold text-medical-900">Cobertura y capacidad de atencion</h2>
+          <div class="mt-4 grid grid-cols-2 gap-3 text-center">
+            <div class="rounded-xl bg-medical-50 p-4">
+              <p class="text-2xl font-extrabold text-medical-800">12</p>
+              <p class="text-xs font-semibold text-slate-600">Clinicas activas</p>
+            </div>
+            <div class="rounded-xl bg-medical-50 p-4">
+              <p class="text-2xl font-extrabold text-medical-800">5</p>
+              <p class="text-xs font-semibold text-slate-600">Ciudades clave</p>
+            </div>
+            <div class="rounded-xl bg-medical-50 p-4">
+              <p class="text-2xl font-extrabold text-medical-800">4</p>
+              <p class="text-xs font-semibold text-slate-600">Lineas de servicio</p>
+            </div>
+            <div class="rounded-xl bg-medical-50 p-4">
+              <p class="text-2xl font-extrabold text-medical-800">24/7</p>
+              <p class="text-xs font-semibold text-slate-600">Orientacion digital</p>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="caracteristicas" class="py-10">
+        <div class="rounded-2xl border border-medical-200 bg-white p-6 sm:p-8">
+          <h2 class="text-2xl font-bold text-medical-900">Nuestras caracteristicas principales</h2>
+          <p class="mt-3 max-w-3xl text-slate-600">
+            Disenamos una experiencia de salud ambulatoria centrada en resultados clinicos, continuidad
+            de cuidado y prevencion temprana para cada etapa de la vida.
+          </p>
+
+          <div id="servicios" class="mt-6 grid gap-4 md:grid-cols-2">
+            <article class="rounded-xl border border-medical-200 bg-medical-50 p-5">
+              <h3 class="text-lg font-bold text-medical-900">Atencion primaria conectada</h3>
+              <p class="mt-2 text-slate-600">
+                Seguimiento integral con medicos de cabecera que coordinan diagnostico, tratamiento y
+                derivaciones.
+              </p>
+            </article>
+
+            <article class="rounded-xl border border-medical-200 bg-medical-50 p-5">
+              <h3 class="text-lg font-bold text-medical-900">Red de especialistas</h3>
+              <p class="mt-2 text-slate-600">
+                Acceso a especialidades prioritarias con enfoque multidisciplinario y tiempos de
+                respuesta eficientes.
+              </p>
+            </article>
+
+            <article class="rounded-xl border border-medical-200 bg-medical-50 p-5">
+              <h3 class="text-lg font-bold text-medical-900">Manejo de cronicas</h3>
+              <p class="mt-2 text-slate-600">
+                Protocolos para diabetes, hipertension y otras condiciones de larga evolucion con
+                controles periodicos.
+              </p>
+            </article>
+
+            <article class="rounded-xl border border-medical-200 bg-medical-50 p-5">
+              <h3 class="text-lg font-bold text-medical-900">Prevencion inteligente</h3>
+              <p class="mt-2 text-slate-600">
+                Programas preventivos y evaluaciones de riesgo para detectar de forma anticipada y
+                promover habitos saludables.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="beneficios" class="py-10">
+        <div class="rounded-2xl border border-healing-100 bg-gradient-to-r from-healing-100 to-white p-6 sm:p-8">
+          <h2 class="text-2xl font-bold text-medical-900">Beneficios para nuestros pacientes</h2>
+          <p class="mt-3 text-slate-700">
+            Trabajamos para que cada persona reciba una atencion mas simple, coordinada y efectiva en
+            cada visita.
+          </p>
+          <ul class="mt-4 space-y-2 text-slate-700">
+            <li>Acceso rapido a consultas de atencion primaria y especialistas.</li>
+            <li>Planes de seguimiento personalizados para condiciones cronicas.</li>
+            <li>Programas de prevencion para detectar riesgos de forma temprana.</li>
+            <li>Atencion en clinicas de EEUU y Reino Unido con el mismo enfoque de calidad.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="experiencia" class="py-10">
+        <div class="rounded-2xl border border-medical-200 bg-white p-6 sm:p-8">
+          <h2 class="text-2xl font-bold text-medical-900">Experiencia de cuidado Health Care</h2>
+          <p class="mt-3 text-slate-700">
+            Nuestra experiencia combina cercania humana con coordinacion clinica para acompanarte antes,
+            durante y despues de cada consulta.
+          </p>
+          <ol class="mt-4 list-decimal space-y-2 pl-5 text-slate-700">
+            <li>Evaluamos tu estado de salud y antecedentes para definir prioridades.</li>
+            <li>Coordinamos atencion primaria y especialistas dentro de una misma red.</li>
+            <li>Hacemos seguimiento continuo con recomendaciones claras y medibles.</li>
+          </ol>
+          <p class="mt-4 text-slate-700">
+            Este modelo mejora la continuidad del tratamiento y te ayuda a tomar decisiones de salud con
+            mayor confianza.
+          </p>
+        </div>
+      </section>
+
+      <section id="contacto" class="py-10 pb-16">
+        <div class="rounded-2xl bg-medical-800 p-6 text-white sm:p-8">
+          <div class="grid gap-6 md:grid-cols-2 md:items-center">
+            <div>
+              <h2 class="text-2xl font-bold sm:text-3xl">Tu bienestar empieza con una cita hoy.</h2>
+              <p class="mt-3 text-medical-100">
+                Nuestro equipo coordina tu atencion en la clinica mas cercana y define un plan de
+                cuidado adaptado a tus necesidades.
+              </p>
+              <div class="mt-5 flex flex-wrap gap-3">
+                <a
+                  href="mailto:contact@healthcare.com"
+                  class="inline-flex items-center rounded-lg bg-white px-5 py-3 text-sm font-bold text-medical-800 hover:bg-medical-50"
+                  >Escribir por correo</a
+                >
+                <a
+                  href="tel:+18005551234"
+                  class="inline-flex items-center rounded-lg border border-white/60 px-5 py-3 text-sm font-bold text-white hover:bg-white/10"
+                  >Llamar ahora</a
+                >
+              </div>
+            </div>
+            <div
+              aria-label="Canales de contacto"
+              class="rounded-xl border border-white/20 bg-white/10 p-5 text-sm"
+            >
+              <p><strong>Email:</strong> contact@healthcare.com</p>
+              <p class="mt-2"><strong>Telefono:</strong> +1 (800) 555-1234</p>
+              <p class="mt-2"><strong>EEUU:</strong> Texas, Florida y Georgia</p>
+              <p class="mt-2"><strong>Reino Unido:</strong> Londres y Manchester</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-medical-200 bg-white">
+      <div class="mx-auto w-full max-w-7xl px-4 py-6 text-sm text-slate-600 sm:px-6 lg:px-8">
+        <p class="text-center sm:text-left">
+          Health Care - Servicios de salud ambulatorios en EEUU y Reino Unido. Calidad clinica,
+          cercania y prevencion continua.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

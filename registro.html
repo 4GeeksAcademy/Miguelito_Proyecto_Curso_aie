@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Formulario de registro de pacientes de Health Care para aplicar a servicios de salud ambulatorios."
+    />
+    <title>Registro | Health Care</title>
+    <script>
+      tailwind = {
+        config: {
+          theme: {
+            extend: {
+              colors: {
+                medical: {
+                  50: "#f4fbff",
+                  100: "#e6f4ff",
+                  200: "#c8e7ff",
+                  300: "#9dd5ff",
+                  400: "#64baff",
+                  500: "#3297f2",
+                  600: "#1f75d4",
+                  700: "#1d5fb0",
+                  800: "#1d4f90",
+                  900: "#1c4277"
+                },
+                healing: {
+                  100: "#e9f8f4",
+                  500: "#2fa785",
+                  700: "#1f7d65"
+                }
+              }
+            }
+          }
+        }
+      };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen bg-gradient-to-b from-medical-50 via-white to-medical-100 text-slate-800">
+    <header class="border-b border-medical-200/70 bg-white/95 backdrop-blur">
+      <div class="mx-auto flex w-full max-w-5xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+        <a href="./index.html" aria-label="Volver a inicio">
+          <img
+            src="./img/Gemini_Generated_Image_h2jfl6h2jfl6h2jf.png"
+            alt="Health Care Ambulatory Health Services"
+            class="h-12 w-auto sm:h-14"
+          />
+        </a>
+        <a
+          href="./index.html"
+          class="rounded-lg border border-medical-300 bg-white px-4 py-2 text-sm font-semibold text-medical-800 hover:bg-medical-50"
+          >Volver al inicio</a
+        >
+      </div>
+    </header>
+
+    <main class="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
+      <section class="rounded-2xl border border-medical-200 bg-white p-6 shadow-sm sm:p-8">
+        <p class="inline-flex rounded-full border border-healing-500/30 bg-healing-100 px-3 py-1 text-xs font-bold uppercase tracking-wide text-healing-700">
+          Registro de aplicacion
+        </p>
+        <h1 class="mt-4 text-3xl font-extrabold text-medical-900 sm:text-4xl">
+          Completa tu registro en 3 pasos
+        </h1>
+        <p class="mt-3 text-slate-600">
+          Completa tus datos personales, proporciona la informacion especifica que necesitamos y envia tu
+          aplicacion. Este formulario solo valida tus datos y no envia informacion a un servidor.
+        </p>
+
+        <ol class="mt-6 grid gap-3 text-sm sm:grid-cols-3">
+          <li class="rounded-xl border border-medical-200 bg-medical-50 p-3 font-semibold text-medical-900">
+            1. Datos personales
+          </li>
+          <li class="rounded-xl border border-medical-200 bg-medical-50 p-3 font-semibold text-medical-900">
+            2. Informacion especifica
+          </li>
+          <li class="rounded-xl border border-medical-200 bg-medical-50 p-3 font-semibold text-medical-900">
+            3. Validar y enviar aplicacion
+          </li>
+        </ol>
+      </section>
+
+      <section class="mt-8 rounded-2xl border border-medical-200 bg-white p-6 shadow-sm sm:p-8">
+        <form id="registroForm" novalidate class="space-y-8">
+          <fieldset>
+            <legend class="text-xl font-bold text-medical-900">Datos personales</legend>
+            <div class="mt-4 grid gap-4 sm:grid-cols-2">
+              <div>
+                <label for="nombre" class="mb-1 block text-sm font-semibold text-slate-700">Nombre</label>
+                <input
+                  id="nombre"
+                  name="nombre"
+                  type="text"
+                  required
+                  class="w-full rounded-lg border border-slate-300 px-3 py-2 outline-none transition focus:border-medical-500 focus:ring-2 focus:ring-medical-200"
+                />
+                <p class="mt-1 hidden text-xs text-red-600" data-error-for="nombre"></p>
+              </div>
+
+              <div>
+                <label for="apellido" class="mb-1 block text-sm font-semibold text-slate-700">Apellido</label>
+                <input
+                  id="apellido"
+                  name="apellido"
+                  type="text"
+                  required
+                  class="w-full rounded-lg border border-slate-300 px-3 py-2 outline-none transition focus:border-medical-500 focus:ring-2 focus:ring-medical-200"
+                />
+                <p class="mt-1 hidden text-xs text-red-600" data-error-for="apellido"></p>
+              </div>
+
+              <div>
+                <label for="email" class="mb-1 block text-sm font-semibold text-slate-700">Correo electronico</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  class="w-full rounded-lg border border-slate-300 px-3 py-2 outline-none transition focus:border-medical-500 focus:ring-2 focus:ring-medical-200"
+                />
+                <p class="mt-1 hidden text-xs text-red-600" data-error-for="email"></p>
+              </div>
+
+              <div>
+                <label for="telefono" class="mb-1 block text-sm font-semibold text-slate-700">Telefono</label>
+                <input
+                  id="telefono"
+                  name="telefono"
+                  type="tel"
+                  required
+                  placeholder="+1 555 123 4567"
+                  class="w-full rounded-lg border border-slate-300 px-3 py-2 outline-none transition focus:border-medical-500 focus:ring-2 focus:ring-medical-200"
+                />
+                <p class="mt-1 hidden text-xs text-red-600" data-error-for="telefono"></p>
+              </div>
+
+              <div>
+                <label for="fechaNacimiento" class="mb-1 block text-sm font-semibold text-slate-700"
+                  >Fecha de nacimiento</label
+                >
+                <input
+                  id="fechaNacimiento"
+                  name="fechaNacimiento"
+                  type="date"
+                  required
+                  class="w-full rounded-lg border border-slate-300 px-3 py-2 outline-none transition focus:border-medical-500 focus:ring-2 focus:ring-medical-200"
+                />
+                <p class="mt-1 hidden text-xs text-red-600" data-error-for="fechaNacimiento"></p>
+              </div>
+
+              <div>
+                <label for="pais" class="mb-1 block text-sm font-semibold text-slate-700">Pais de residencia</label>
+                <select
+                  id="pais"
+                  name="pais"
+                  required
+                  class="w-full rounded-lg border border-slate-300 px-3 py-2 outline-none transition focus:border-medical-500 focus:ring-2 focus:ring-medical-200"
+                >
+                  <option value="">Selecciona una opcion</option>
+                  <option value="EEUU">EEUU</option>
+                  <option value="Reino Unido">Reino Unido</option>
+                </select>
+                <p class="mt-1 hidden text-xs text-red-600" data-error-for="pais"></p>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend class="text-xl font-bold text-medical-900">Informacion especifica</legend>
+            <div class="mt-4 grid gap-4 sm:grid-cols-2">
+              <div>
+                <label for="servicio" class="mb-1 block text-sm font-semibold text-slate-700"
+                  >Servicio solicitado</label
+                >
+                <select
+                  id="servicio"
+                  name="servicio"
+                  required
+                  class="w-full rounded-lg border border-slate-300 px-3 py-2 outline-none transition focus:border-medical-500 focus:ring-2 focus:ring-medical-200"
+                >
+                  <option value="">Selecciona una opcion</option>
+                  <option value="Atencion primaria">Atencion primaria</option>
+                  <option value="Especialistas">Especialistas</option>
+                  <option value="Enfermedades cronicas">Enfermedades cronicas</option>
+                  <option value="Salud preventiva">Salud preventiva</option>
+                </select>
+                <p class="mt-1 hidden text-xs text-red-600" data-error-for="servicio"></p>
+              </div>
+
+              <div>
+                <label for="clinica" class="mb-1 block text-sm font-semibold text-slate-700">Clinica preferida</label>
+                <select
+                  id="clinica"
+                  name="clinica"
+                  required
+                  class="w-full rounded-lg border border-slate-300 px-3 py-2 outline-none transition focus:border-medical-500 focus:ring-2 focus:ring-medical-200"
+                >
+                  <option value="">Selecciona una opcion</option>
+                  <option value="Texas">Texas</option>
+                  <option value="Florida">Florida</option>
+                  <option value="Georgia">Georgia</option>
+                  <option value="Londres">Londres</option>
+                  <option value="Manchester">Manchester</option>
+                </select>
+                <p class="mt-1 hidden text-xs text-red-600" data-error-for="clinica"></p>
+              </div>
+
+              <div class="sm:col-span-2">
+                <label for="motivo" class="mb-1 block text-sm font-semibold text-slate-700"
+                  >Motivo principal de consulta</label
+                >
+                <textarea
+                  id="motivo"
+                  name="motivo"
+                  rows="4"
+                  required
+                  class="w-full rounded-lg border border-slate-300 px-3 py-2 outline-none transition focus:border-medical-500 focus:ring-2 focus:ring-medical-200"
+                  placeholder="Describe brevemente tu necesidad de atencion"
+                ></textarea>
+                <p class="mt-1 hidden text-xs text-red-600" data-error-for="motivo"></p>
+              </div>
+
+              <div class="sm:col-span-2">
+                <label class="inline-flex items-start gap-2 text-sm text-slate-700" for="aceptaPoliticas">
+                  <input
+                    id="aceptaPoliticas"
+                    name="aceptaPoliticas"
+                    type="checkbox"
+                    required
+                    class="mt-1 h-4 w-4 rounded border-slate-300 text-medical-700 focus:ring-medical-500"
+                  />
+                  Confirmo que la informacion proporcionada es correcta y autorizo su validacion.
+                </label>
+                <p class="mt-1 hidden text-xs text-red-600" data-error-for="aceptaPoliticas"></p>
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="flex flex-wrap items-center gap-3">
+            <button
+              type="submit"
+              class="inline-flex items-center rounded-lg bg-medical-700 px-5 py-3 text-sm font-bold text-white shadow-sm hover:bg-medical-800"
+            >
+              Enviar aplicacion
+            </button>
+            <p class="text-sm text-slate-500">Solo se validan los datos, no se envia al servidor.</p>
+          </div>
+
+          <div id="estadoFormulario" class="hidden rounded-lg border px-4 py-3 text-sm" role="status"></div>
+        </form>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        const form = document.getElementById("registroForm");
+        const estado = document.getElementById("estadoFormulario");
+
+        function setError(name, message) {
+          const input = form.elements[name];
+          const errorNode = form.querySelector('[data-error-for="' + name + '"]');
+          if (!input || !errorNode) return;
+
+          input.classList.add("border-red-500", "focus:border-red-500", "focus:ring-red-100");
+          errorNode.textContent = message;
+          errorNode.classList.remove("hidden");
+        }
+
+        function clearError(name) {
+          const input = form.elements[name];
+          const errorNode = form.querySelector('[data-error-for="' + name + '"]');
+          if (!input || !errorNode) return;
+
+          input.classList.remove("border-red-500", "focus:border-red-500", "focus:ring-red-100");
+          errorNode.textContent = "";
+          errorNode.classList.add("hidden");
+        }
+
+        function clearState() {
+          estado.className = "hidden rounded-lg border px-4 py-3 text-sm";
+          estado.textContent = "";
+        }
+
+        function showState(success, message) {
+          estado.className = "rounded-lg border px-4 py-3 text-sm";
+          if (success) {
+            estado.classList.add("border-healing-500/40", "bg-healing-100", "text-healing-700");
+          } else {
+            estado.classList.add("border-red-300", "bg-red-50", "text-red-700");
+          }
+          estado.textContent = message;
+        }
+
+        function validate() {
+          let valid = true;
+          clearState();
+
+          const requiredFields = [
+            "nombre",
+            "apellido",
+            "email",
+            "telefono",
+            "fechaNacimiento",
+            "pais",
+            "servicio",
+            "clinica",
+            "motivo"
+          ];
+
+          requiredFields.forEach((name) => {
+            clearError(name);
+            const value = String(form.elements[name].value || "").trim();
+            if (!value) {
+              valid = false;
+              setError(name, "Este campo es obligatorio.");
+            }
+          });
+
+          clearError("aceptaPoliticas");
+          if (!form.elements.aceptaPoliticas.checked) {
+            valid = false;
+            setError("aceptaPoliticas", "Debes aceptar la validacion de datos.");
+          }
+
+          const emailValue = String(form.elements.email.value || "").trim();
+          if (emailValue && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)) {
+            valid = false;
+            setError("email", "Ingresa un correo electronico valido.");
+          }
+
+          const phoneValue = String(form.elements.telefono.value || "").trim();
+          if (phoneValue && !/^[+()\-\s0-9]{7,20}$/.test(phoneValue)) {
+            valid = false;
+            setError("telefono", "Ingresa un telefono valido (7 a 20 caracteres).");
+          }
+
+          const motivoValue = String(form.elements.motivo.value || "").trim();
+          if (motivoValue && motivoValue.length < 15) {
+            valid = false;
+            setError("motivo", "Describe tu motivo con al menos 15 caracteres.");
+          }
+
+          return valid;
+        }
+
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+          const isValid = validate();
+
+          if (!isValid) {
+            showState(false, "Revisa los campos marcados y vuelve a intentar.");
+            return;
+          }
+
+          showState(
+            true,
+            "Aplicacion validada correctamente. Tus datos estan listos para revision interna."
+          );
+        });
+      })();
+    </script>
+  </body>
+</html>
