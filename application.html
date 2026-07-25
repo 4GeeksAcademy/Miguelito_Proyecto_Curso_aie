@@ -71,14 +71,17 @@
         </p>
 
         <ol class="mt-6 grid gap-3 text-sm sm:grid-cols-3">
-          <li class="rounded-xl border border-medical-200 bg-medical-50 p-3 font-semibold text-medical-900">
-            1. Datos personales
+          <li class="flex items-center gap-2 rounded-xl border border-medical-200 bg-medical-50 p-3 font-semibold text-medical-900">
+            <span class="flex h-6 w-6 items-center justify-center rounded-full bg-medical-700 text-xs text-white">1</span>
+            Datos personales
           </li>
-          <li class="rounded-xl border border-medical-200 bg-medical-50 p-3 font-semibold text-medical-900">
-            2. Informacion especifica
+          <li class="flex items-center gap-2 rounded-xl border border-medical-200 bg-medical-50 p-3 font-semibold text-medical-900">
+            <span class="flex h-6 w-6 items-center justify-center rounded-full bg-medical-700 text-xs text-white">2</span>
+            Informacion especifica
           </li>
-          <li class="rounded-xl border border-medical-200 bg-medical-50 p-3 font-semibold text-medical-900">
-            3. Validar y enviar aplicacion
+          <li class="flex items-center gap-2 rounded-xl border border-medical-200 bg-medical-50 p-3 font-semibold text-medical-900">
+            <span class="flex h-6 w-6 items-center justify-center rounded-full bg-medical-700 text-xs text-white">3</span>
+            Validar y enviar aplicacion
           </li>
         </ol>
       </section>
@@ -239,14 +242,20 @@
             </div>
           </fieldset>
 
-          <div class="flex flex-wrap items-center gap-3">
+          <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:flex-wrap">
             <button
               type="submit"
-              class="inline-flex items-center rounded-lg bg-medical-700 px-5 py-3 text-sm font-bold text-white shadow-sm hover:bg-medical-800"
+              class="inline-flex items-center rounded-lg bg-green-600 px-5 py-3 text-sm font-bold text-white shadow-sm hover:bg-green-700 transition-colors"
             >
               Enviar aplicacion
             </button>
-            <p class="text-sm text-slate-500">Solo se validan los datos, no se envia al servidor.</p>
+            <button
+              type="reset"
+              class="inline-flex w-full items-center justify-center rounded-lg border border-red-600 bg-red-600 px-6 py-3 text-sm font-bold text-white shadow-md hover:bg-red-700 sm:w-auto"
+            >
+              Limpiar
+            </button>
+            
           </div>
 
           <div id="estadoFormulario" class="hidden rounded-lg border px-4 py-3 text-sm" role="status"></div>
@@ -287,7 +296,7 @@
         function showState(success, message) {
           estado.className = "rounded-lg border px-4 py-3 text-sm";
           if (success) {
-            estado.classList.add("border-healing-500/40", "bg-healing-100", "text-healing-700");
+            estado.classList.add("border-green-500", "bg-green-100", "text-green-800");
           } else {
             estado.classList.add("border-red-300", "bg-red-50", "text-red-700");
           }
@@ -357,8 +366,19 @@
 
           showState(
             true,
-            "Aplicacion validada correctamente. Tus datos estan listos para revision interna."
+            "Datos enviados correctamente."
           );
+        });
+
+        form.addEventListener("reset", function () {
+          const fieldNames = [
+            "nombre", "apellido", "email", "telefono", "fechaNacimiento",
+            "pais", "servicio", "clinica", "motivo", "aceptaPoliticas"
+          ];
+          fieldNames.forEach(function (name) {
+            clearError(name);
+          });
+          clearState();
         });
       })();
     </script>
