@@ -15,21 +15,21 @@
             extend: {
               colors: {
                 medical: {
-                  50: "#f4fbff",
-                  100: "#e6f4ff",
-                  200: "#c8e7ff",
-                  300: "#9dd5ff",
-                  400: "#64baff",
-                  500: "#3297f2",
-                  600: "#1f75d4",
-                  700: "#1d5fb0",
-                  800: "#1d4f90",
-                  900: "#1c4277"
+                  50: "#f3f6ff",
+                  100: "#e7eefc",
+                  200: "#cdd9f5",
+                  300: "#aabfe8",
+                  400: "#839ed6",
+                  500: "#5f81bf",
+                  600: "#4868a0",
+                  700: "#335080",
+                  800: "#213a60",
+                  900: "#102548"
                 },
                 healing: {
-                  100: "#e9f8f4",
-                  500: "#2fa785",
-                  700: "#1f7d65"
+                  100: "#e9fbf8",
+                  500: "#36d2c5",
+                  700: "#209f96"
                 }
               }
             }
@@ -37,23 +37,91 @@
         }
       };
     </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "MedicalOrganization",
+            "@id": "https://healthcare.example/#organization",
+            "name": "Health Care",
+            "url": "https://healthcare.example/",
+            "email": "contact@healthcare.com",
+            "telephone": "+1-800-555-1234",
+            "areaServed": [
+              "Texas",
+              "Florida",
+              "Georgia",
+              "Londres",
+              "Manchester"
+            ],
+            "medicalSpecialty": [
+              "PrimaryCare",
+              "ChronicCare",
+              "PreventiveMedicine"
+            ]
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://healthcare.example/application#webpage",
+            "url": "https://healthcare.example/application",
+            "name": "Registro de pacientes | Health Care",
+            "description": "Formulario de registro de pacientes para aplicar a servicios de salud ambulatorios.",
+            "inLanguage": "es",
+            "isPartOf": {
+              "@id": "https://healthcare.example/#organization"
+            },
+            "about": {
+              "@id": "https://healthcare.example/#organization"
+            }
+          }
+        ]
+      }
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="min-h-screen bg-gradient-to-b from-medical-50 via-white to-medical-100 text-slate-800">
-    <header class="border-b border-medical-200/70 bg-white/95 backdrop-blur">
-      <div class="mx-auto flex w-full max-w-5xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <a href="./index.html" aria-label="Volver a inicio">
+  <body class="min-h-screen bg-gradient-to-b from-medical-50 via-healing-100 to-medical-100 text-slate-800">
+    <header class="sticky top-0 z-50 border-b border-medical-200/70 bg-white/95 backdrop-blur">
+      <div class="mx-auto flex w-full max-w-7xl flex-wrap items-center gap-4 px-4 py-3 sm:px-6 lg:px-8">
+        <a href="./index.html#inicio" aria-label="Health Care inicio">
           <img
-            src="./img/Gemini_Generated_Image_h2jfl6h2jfl6h2jf.png"
+            src="./img/logo_Healt-Care.png"
             alt="Health Care Ambulatory Health Services"
-            class="h-12 w-auto sm:h-14"
+            class="h-28 w-auto sm:h-32"
           />
         </a>
-        <a
-          href="./index.html"
-          class="rounded-lg border border-medical-300 bg-white px-4 py-2 text-sm font-semibold text-medical-800 hover:bg-medical-50"
-          >Volver al inicio</a
-        >
+        <nav aria-label="Principal" class="md:ml-2">
+          <ul class="flex flex-wrap items-center gap-2 text-sm font-semibold text-medical-800 sm:gap-3 md:gap-4">
+            <li><a class="rounded-md px-2 py-1 hover:bg-medical-100" href="./index.html#inicio">Inicio</a></li>
+            <li>
+              <a class="rounded-md px-2 py-1 hover:bg-medical-100" href="./index.html#servicios">Servicios</a>
+            </li>
+            <li>
+              <a class="rounded-md px-2 py-1 hover:bg-medical-100" href="./index.html#caracteristicas"
+                >Por que elegirnos</a
+              >
+            </li>
+            <li>
+              <a class="rounded-md px-2 py-1 hover:bg-medical-100" href="./index.html#beneficios">Beneficios</a>
+            </li>
+            <li>
+              <a class="rounded-md px-2 py-1 hover:bg-medical-100" href="./index.html#experiencia">Experiencia</a>
+            </li>
+            <li>
+              <a class="rounded-md px-2 py-1 hover:bg-medical-100" href="./application.html">Registro</a>
+            </li>
+            <li><a class="rounded-md px-2 py-1 hover:bg-medical-100" href="./index.html#contacto">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="ml-auto">
+          <a
+            href="#"
+            class="inline-flex items-center rounded-lg bg-green-600 px-4 py-2 text-sm font-bold text-white shadow-sm hover:bg-green-700 transition-colors"
+            role="button"
+            aria-label="Iniciar sesion">
+            Iniciar Sesion
+          </a>
+        </div>
       </div>
     </header>
 
@@ -128,15 +196,38 @@
               </div>
 
               <div>
-                <label for="telefono" class="mb-1 block text-sm font-semibold text-slate-700">Telefono</label>
-                <input
-                  id="telefono"
-                  name="telefono"
-                  type="tel"
-                  required
-                  placeholder="+1 555 123 4567"
-                  class="w-full rounded-lg border border-slate-300 px-3 py-2 outline-none transition focus:border-medical-500 focus:ring-2 focus:ring-medical-200"
-                />
+                <label for="telefono" class="mb-1 block text-sm font-semibold text-slate-700">
+                  Telefono <span id="telefonoCodigoLabel" class="text-xs font-medium text-medical-700"></span>
+                </label>
+                <div class="flex gap-2">
+                  <div
+                    id="telefonoBanderaSeleccionada"
+                    class="flex w-12 items-center justify-center rounded-lg border border-slate-300 bg-white text-xl"
+                    aria-label="Bandera del pais seleccionado"
+                  >
+                    🌐
+                  </div>
+                  <select
+                    id="telefonoCodigo"
+                    name="telefonoCodigo"
+                    aria-label="Codigo de telefono"
+                    class="w-28 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-medical-800 outline-none transition focus:border-medical-500 focus:ring-2 focus:ring-medical-200"
+                  >
+                    <option value="">Codigo</option>
+                    <option value="EEUU">US (+1)</option>
+                    <option value="Reino Unido">UK (+44)</option>
+                  </select>
+                  <input
+                    id="telefono"
+                    name="telefono"
+                    type="tel"
+                    inputmode="numeric"
+                    autocomplete="tel-national"
+                    required
+                    placeholder="Numero sin codigo"
+                    class="w-full rounded-lg border border-slate-300 px-3 py-2 outline-none transition focus:border-medical-500 focus:ring-2 focus:ring-medical-200"
+                  />
+                </div>
                 <p class="mt-1 hidden text-xs text-red-600" data-error-for="telefono"></p>
               </div>
 
@@ -245,8 +336,7 @@
           <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:flex-wrap">
             <button
               type="submit"
-              class="inline-flex items-center rounded-lg bg-green-600 px-5 py-3 text-sm font-bold text-white shadow-sm hover:bg-green-700 transition-colors"
-            >
+              class="inline-flex items-center rounded-lg bg-green-600 px-5 py-3 text-sm font-bold text-white shadow-sm hover:bg-green-700 transition-colors">
               Enviar aplicacion
             </button>
             <button
@@ -263,124 +353,76 @@
       </section>
     </main>
 
-    <script>
-      (function () {
-        const form = document.getElementById("registroForm");
-        const estado = document.getElementById("estadoFormulario");
+    <footer
+      role="contentinfo"
+      itemscope
+      itemtype="https://schema.org/MedicalOrganization"
+      class="border-t border-medical-200 bg-white"
+    >
+      <div
+        class="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8"
+      >
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- Marca y descripcion -->
+          <div itemprop="description">
+            <p class="text-lg font-bold text-medical-900" itemprop="name">
+              Health Care
+            </p>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">
+              Servicios de salud ambulatorios en EEUU y Reino Unido. Calidad clinica, cercania y
+              prevencion continua.
+            </p>
+          </div>
 
-        function setError(name, message) {
-          const input = form.elements[name];
-          const errorNode = form.querySelector('[data-error-for="' + name + '"]');
-          if (!input || !errorNode) return;
+          <!-- Contacto directo -->
+          <div aria-label="Datos de contacto" role="region">
+            <p class="mb-2 text-sm font-bold text-medical-900">Contacto</p>
+            <ul class="space-y-1 text-sm text-slate-600">
+              <li>
+                <span class="font-semibold">Email:</span>
+                <a
+                  href="mailto:contact@healthcare.com"
+                  class="underline decoration-medical-300 underline-offset-2 hover:text-medical-700"
+                  itemprop="email"
+                  aria-label="Enviar correo a contact@healthcare.com"
+                  >contact@healthcare.com</a
+                >
+              </li>
+              <li>
+                <span class="font-semibold">Telefono:</span>
+                <a
+                  href="tel:+18005551234"
+                  class="underline decoration-medical-300 underline-offset-2 hover:text-medical-700"
+                  itemprop="telephone"
+                  aria-label="Llamar al +1 800 555 1234"
+                  >+1 (800) 555-1234</a
+                >
+              </li>
+            </ul>
+          </div>
 
-          input.classList.add("border-red-500", "focus:border-red-500", "focus:ring-red-100");
-          errorNode.textContent = message;
-          errorNode.classList.remove("hidden");
-        }
+          <!-- Ubicaciones -->
+          <div aria-label="Ubicaciones" role="region" itemprop="location" itemscope itemtype="https://schema.org/Place">
+            <p class="mb-2 text-sm font-bold text-medical-900">Ubicaciones</p>
+            <ul class="space-y-1 text-sm text-slate-600">
+              <li>
+                <span class="font-semibold">EEUU:</span> Texas, Florida y Georgia
+              </li>
+              <li>
+                <span class="font-semibold">Reino Unido:</span> Londres y Manchester
+              </li>
+            </ul>
+          </div>
+        </div>
 
-        function clearError(name) {
-          const input = form.elements[name];
-          const errorNode = form.querySelector('[data-error-for="' + name + '"]');
-          if (!input || !errorNode) return;
+        <hr class="my-6 border-medical-200" />
 
-          input.classList.remove("border-red-500", "focus:border-red-500", "focus:ring-red-100");
-          errorNode.textContent = "";
-          errorNode.classList.add("hidden");
-        }
+        <p class="text-center text-xs text-slate-500">
+          &copy; 2026 Health Care. Todos los derechos reservados.
+        </p>
+      </div>
+    </footer>
 
-        function clearState() {
-          estado.className = "hidden rounded-lg border px-4 py-3 text-sm";
-          estado.textContent = "";
-        }
-
-        function showState(success, message) {
-          estado.className = "rounded-lg border px-4 py-3 text-sm";
-          if (success) {
-            estado.classList.add("border-green-500", "bg-green-100", "text-green-800");
-          } else {
-            estado.classList.add("border-red-300", "bg-red-50", "text-red-700");
-          }
-          estado.textContent = message;
-        }
-
-        function validate() {
-          let valid = true;
-          clearState();
-
-          const requiredFields = [
-            "nombre",
-            "apellido",
-            "email",
-            "telefono",
-            "fechaNacimiento",
-            "pais",
-            "servicio",
-            "clinica",
-            "motivo"
-          ];
-
-          requiredFields.forEach((name) => {
-            clearError(name);
-            const value = String(form.elements[name].value || "").trim();
-            if (!value) {
-              valid = false;
-              setError(name, "Este campo es obligatorio.");
-            }
-          });
-
-          clearError("aceptaPoliticas");
-          if (!form.elements.aceptaPoliticas.checked) {
-            valid = false;
-            setError("aceptaPoliticas", "Debes aceptar la validacion de datos.");
-          }
-
-          const emailValue = String(form.elements.email.value || "").trim();
-          if (emailValue && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)) {
-            valid = false;
-            setError("email", "Ingresa un correo electronico valido.");
-          }
-
-          const phoneValue = String(form.elements.telefono.value || "").trim();
-          if (phoneValue && !/^[+()\-\s0-9]{7,20}$/.test(phoneValue)) {
-            valid = false;
-            setError("telefono", "Ingresa un telefono valido (7 a 20 caracteres).");
-          }
-
-          const motivoValue = String(form.elements.motivo.value || "").trim();
-          if (motivoValue && motivoValue.length < 15) {
-            valid = false;
-            setError("motivo", "Describe tu motivo con al menos 15 caracteres.");
-          }
-
-          return valid;
-        }
-
-        form.addEventListener("submit", function (event) {
-          event.preventDefault();
-          const isValid = validate();
-
-          if (!isValid) {
-            showState(false, "Revisa los campos marcados y vuelve a intentar.");
-            return;
-          }
-
-          showState(
-            true,
-            "Datos enviados correctamente."
-          );
-        });
-
-        form.addEventListener("reset", function () {
-          const fieldNames = [
-            "nombre", "apellido", "email", "telefono", "fechaNacimiento",
-            "pais", "servicio", "clinica", "motivo", "aceptaPoliticas"
-          ];
-          fieldNames.forEach(function (name) {
-            clearError(name);
-          });
-          clearState();
-        });
-      })();
-    </script>
+    <script src="./validation.js"></script>
   </body>
 </html>

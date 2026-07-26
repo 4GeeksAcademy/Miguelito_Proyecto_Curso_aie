@@ -15,21 +15,21 @@
             extend: {
               colors: {
                 medical: {
-                  50: "#f4fbff",
-                  100: "#e6f4ff",
-                  200: "#c8e7ff",
-                  300: "#9dd5ff",
-                  400: "#64baff",
-                  500: "#3297f2",
-                  600: "#1f75d4",
-                  700: "#1d5fb0",
-                  800: "#1d4f90",
-                  900: "#1c4277"
+                  50: "#f3f6ff",
+                  100: "#e7eefc",
+                  200: "#cdd9f5",
+                  300: "#aabfe8",
+                  400: "#839ed6",
+                  500: "#5f81bf",
+                  600: "#4868a0",
+                  700: "#335080",
+                  800: "#213a60",
+                  900: "#102548"
                 },
                 healing: {
-                  100: "#e9f8f4",
-                  500: "#2fa785",
-                  700: "#1f7d65"
+                  100: "#e9fbf8",
+                  500: "#36d2c5",
+                  700: "#209f96"
                 }
               }
             }
@@ -39,17 +39,17 @@
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="bg-gradient-to-b from-medical-50 via-white to-medical-100 text-slate-800">
+  <body class="bg-gradient-to-b from-medical-50 via-healing-100 to-medical-100 text-slate-800">
     <header class="sticky top-0 z-50 border-b border-medical-200/70 bg-white/95 backdrop-blur">
-      <div class="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+      <div class="mx-auto flex w-full max-w-7xl flex-wrap items-center gap-4 px-4 py-3 sm:px-6 lg:px-8">
         <a href="#inicio" aria-label="Health Care inicio">
           <img
-            src="./img/Gemini_Generated_Image_h2jfl6h2jfl6h2jf.png"
+            src="./img/logo_Healt-Care.png"
             alt="Health Care Ambulatory Health Services"
             class="h-28 w-auto sm:h-32"
           />
         </a>
-        <nav aria-label="Principal">
+        <nav aria-label="Principal" class="md:ml-2">
           <ul class="flex flex-wrap items-center gap-2 text-sm font-semibold text-medical-800 sm:gap-3 md:gap-4">
             <li><a class="rounded-md px-2 py-1 hover:bg-medical-100" href="#inicio">Inicio</a></li>
             <li>
@@ -72,6 +72,15 @@
             <li><a class="rounded-md px-2 py-1 hover:bg-medical-100" href="#contacto">Contacto</a></li>
           </ul>
         </nav>
+        <div class="ml-auto">
+          <a
+            href="#"
+            class="inline-flex items-center rounded-lg bg-green-600 px-4 py-2 text-sm font-bold text-white shadow-sm hover:bg-green-700 transition-colors"
+            role="button"
+            aria-label="Iniciar sesion">
+            Iniciar Sesion
+          </a>
+        </div>
       </div>
     </header>
 
@@ -113,7 +122,11 @@
               class="inline-flex items-center rounded-lg border border-medical-300 bg-white px-5 py-3 text-sm font-bold text-medical-800 hover:bg-medical-50"
               >Conoce nuestros diferenciales</a
             >
-            <a href="./application.html" class="inline-flex items-center rounded-lg bg-green-600 px-5 py-3 text-sm font-bold text-white shadow-md hover:bg-green-700 transition-colors">Iniciar registro</a>
+            <a
+              href="./application.html"
+              class="inline-flex items-center rounded-lg bg-green-600 px-5 py-3 text-sm font-bold text-white shadow-md hover:bg-green-700 transition-colors">
+              Registrarse
+            </a>
           </div>
         </div>
 
