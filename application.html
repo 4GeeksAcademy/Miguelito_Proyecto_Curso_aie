@@ -8,35 +8,23 @@
       content="Formulario de registro de pacientes de Health Care para aplicar a servicios de salud ambulatorios."
     />
     <title>Registro | Health Care</title>
-    <script>
-      tailwind = {
-        config: {
-          theme: {
-            extend: {
-              colors: {
-                medical: {
-                  50: "#f3f6ff",
-                  100: "#e7eefc",
-                  200: "#cdd9f5",
-                  300: "#aabfe8",
-                  400: "#839ed6",
-                  500: "#5f81bf",
-                  600: "#4868a0",
-                  700: "#335080",
-                  800: "#213a60",
-                  900: "#102548"
-                },
-                healing: {
-                  100: "#e9fbf8",
-                  500: "#36d2c5",
-                  700: "#209f96"
-                }
-              }
-            }
-          }
-        }
-      };
-    </script>
+    <style type="text/tailwindcss">
+      @theme {
+        --color-medical-50: #f3f6ff;
+        --color-medical-100: #e7eefc;
+        --color-medical-200: #cdd9f5;
+        --color-medical-300: #aabfe8;
+        --color-medical-400: #839ed6;
+        --color-medical-500: #5f81bf;
+        --color-medical-600: #4868a0;
+        --color-medical-700: #335080;
+        --color-medical-800: #213a60;
+        --color-medical-900: #102548;
+        --color-healing-100: #e9fbf8;
+        --color-healing-500: #36d2c5;
+        --color-healing-700: #209f96;
+      }
+    </style>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -78,7 +66,7 @@
         ]
       }
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
   <body class="min-h-screen bg-gradient-to-b from-medical-50 via-healing-100 to-medical-100 text-slate-800">
     <header class="sticky top-0 z-50 border-b border-medical-200/70 bg-white/95 backdrop-blur">
