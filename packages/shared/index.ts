@@ -1,3 +1,1 @@
-export * from './types';
-export * from './collections';
-export * from './reports';
+export * from '../../src';

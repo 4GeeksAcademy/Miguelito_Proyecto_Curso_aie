@@ -1,85 +1,15 @@
-/**
- * Entidades Principales e Interfaces para HealthCore
- * AI Engineering · HealthCore
- */
+import {
+  calculateNetClaimValue,
+  getCmeDeficit,
+  getPatientAge,
+  isCmeCompliant,
+  isHighRiskOfNoShow,
+  isRejectedClaim
+} from '../../../src/utils/validations';
 
-export type Id = string;
-export type CountryCode = 'US' | 'UK';
-export type AppointmentStatus = 'SCHEDULED' | 'COMPLETED' | 'NO_SHOW' | 'CANCELLED';
-export type ClaimStatus = 'DRAFT' | 'SUBMITTED' | 'APPROVED' | 'REJECTED';
-export type EmployeeRole = 'CLINICIAN' | 'ADMIN' | 'BILLING' | 'EXECUTIVE' | 'TECH';
+export * from '../../../src/types/models';
 
-export interface BaseEntity {
-  id: Id;
-  createdAt?: string;
-  updatedAt?: string;
-}
-
-/**
- * 1. Clínica (Clinic)
- */
-export interface Clinic extends BaseEntity {
-  name: string;
-  country: CountryCode;
-  city: string;
-  ehrSystem: string;
-  active: boolean;
-  getFormattedLocation(): string;
-  isUSClinic(): boolean;
-}
-
-/**
- * 2. Paciente (Patient)
- */
-export interface Patient extends BaseEntity {
-  fullName: string;
-  dateOfBirth: string; // ISO Format YYYY-MM-DD
-  country: CountryCode;
-  primaryClinicId: Id;
-  preferredLanguage: string;
-  getAge(currentYear?: number): number;
-  getSummary(): string;
-}
-
-/**
- * 3. Cita Médica (Appointment)
- */
-export interface Appointment extends BaseEntity {
-  patientId: Id;
-  clinicId: Id;
-  clinicianId: Id;
-  dateTime: string; // ISO Format
-  status: AppointmentStatus;
-  noShowRiskScore: number; // 0.0 a 1.0
-  isHighRiskOfNoShow(): boolean;
-  formatDetails(): string;
-}
-
-/**
- * 4. Reclamación / Factura (Claim)
- */
-export interface Claim extends BaseEntity {
-  appointmentId: Id;
-  amountUSD: number;
-  status: ClaimStatus;
-  rejectionReason?: string;
-  isRejected(): boolean;
-  calculateNetValue(taxRate: number): number;
-}
-
-/**
- * 5. Empleado / Personal (Employee)
- */
-export interface Employee extends BaseEntity {
-  name: string;
-  role: EmployeeRole;
-  department: string;
-  clinicId: Id;
-  cmeHoursCompleted: number;
-  cmeHoursRequired: number;
-  isCmeCompliant(): boolean;
-  getCmeDeficit(): number;
-}
+import type { Appointment, Claim, Clinic, Employee, Patient } from '../../../src/types/models';
 
 /**
  * Instancias concretas con objetos literales
@@ -125,8 +55,7 @@ export const samplePatient: Patient = {
   preferredLanguage: 'Español',
   createdAt: '2023-01-10T10:00:00Z',
   getAge(currentYear: number = 2026): number {
-    const birthYear = parseInt(this.dateOfBirth.split('-')[0], 10);
-    return currentYear - birthYear;
+    return getPatientAge(this, currentYear);
   },
   getSummary(): string {
     return `Paciente: ${this.fullName} | Idioma: ${this.preferredLanguage} | Clínica: ${this.primaryClinicId}`;
@@ -142,7 +71,7 @@ export const sampleAppointment: Appointment = {
   status: 'SCHEDULED',
   noShowRiskScore: 0.78,
   isHighRiskOfNoShow(): boolean {
-    return this.noShowRiskScore >= 0.70;
+    return isHighRiskOfNoShow(this);
   },
   formatDetails(): string {
     return `Cita ${this.id} - Estado: ${this.status} - Riesgo No-Show: ${(this.noShowRiskScore * 100).toFixed(0)}%`;
@@ -157,10 +86,10 @@ export const sampleClaim: Claim = {
   rejectionReason: 'Código de procedimiento inconsistente',
   createdAt: '2026-09-16T14:00:00Z',
   isRejected(): boolean {
-    return this.status === 'REJECTED';
+    return isRejectedClaim(this);
   },
   calculateNetValue(taxRate: number = 0.05): number {
-    return this.amountUSD * (1 - taxRate);
+    return calculateNetClaimValue(this, taxRate);
   }
 };
 
@@ -174,10 +103,9 @@ export const sampleEmployee: Employee = {
   cmeHoursRequired: 50,
   createdAt: '2015-09-01T08:00:00Z',
   isCmeCompliant(): boolean {
-    return this.cmeHoursCompleted >= this.cmeHoursRequired;
+    return isCmeCompliant(this);
   },
   getCmeDeficit(): number {
-    const deficit = this.cmeHoursRequired - this.cmeHoursCompleted;
-    return deficit > 0 ? deficit : 0;
+    return getCmeDeficit(this);
   }
 };

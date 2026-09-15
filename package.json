@@ -1,0 +1,12 @@
+{
+  "name": "miguelito-proyecto-curso-aie",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate:ts": "npx --yes --package typescript tsc --noEmit --project tsconfig.json"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0"
+  }
+}

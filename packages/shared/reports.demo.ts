@@ -7,13 +7,13 @@ import {
   sumBy,
   averageBy,
   generateMetricReport
-} from './reports';
+} from '../../src/utils/transformations';
 
 import {
   Appointment,
   Claim,
   Employee
-} from './types';
+} from '../../src/types/models';
 
 // Colección de ejemplo: Citas médicas
 const appointments: Appointment[] = [

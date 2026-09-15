@@ -55,7 +55,17 @@ Estás construyendo **una sola empresa** a lo largo de muchos hitos y proyectos.
 >
 > - `CONTEXT.md` es un placeholder y debe sustituirse por el contexto de la empresa asignada.
 > - No existe todavía un `AGENTS.md` en la raíz.
-> - Existe metadata del paquete compartido en `packages/shared/package.json` (`@repo/shared-types`), pero aún no hay runner de workspace en raíz.
+> - Existe metadata del paquete compartido en `packages/shared/package.json` (`@repo/shared-types`) y un script raíz para validar TypeScript.
+
+### Validación TypeScript
+
+Ejecuta desde la raíz del repositorio:
+
+```bash
+npm run validate:ts
+```
+
+El comando usa `tsconfig.json` y valida los módulos `src/**/*.ts` y `packages/shared/**/*.ts` sin generar archivos.
 
 ---
 

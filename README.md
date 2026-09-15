@@ -55,7 +55,17 @@ You are building **one company** across many milestones and projects. Each top-l
 >
 > - `CONTEXT.md` is a placeholder and must be replaced with your assigned company context.
 > - There is no root `AGENTS.md` yet.
-> - Shared package metadata exists in `packages/shared/package.json` (`@repo/shared-types`), but no workspace runner is configured at root.
+> - Shared package metadata exists in `packages/shared/package.json` (`@repo/shared-types`) and a root script validates TypeScript.
+
+### TypeScript validation
+
+Run from the repository root:
+
+```bash
+npm run validate:ts
+```
+
+The command uses `tsconfig.json` and validates `src/**/*.ts` and `packages/shared/**/*.ts` without generating files.
 
 ---
 
