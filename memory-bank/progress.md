@@ -2,6 +2,7 @@
 
 ## Estado actual del desarrollo
 - Empresa objetivo definida: HealthCore.
+- Carpeta de skills reubicada en `.agents/skills/`; `memory-bank/` permanece en la raíz del repositorio.
 - Vision funcional definida para dos productos:
   - App Paciente.
   - App Medico.
