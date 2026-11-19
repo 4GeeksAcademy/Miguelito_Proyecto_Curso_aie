@@ -166,3 +166,34 @@ Si el equipo no mantiene los límites de módulos y responsabilidades propuestos
 ## 6. Alcance de implementación recomendado
 
 La propuesta no implica implementar todos los dominios a la vez. Conviene acordar un MVP —por ejemplo, gestión de citas con los permisos, auditoría e integración necesarios—, validar el flujo con datos ficticios y requisitos regionales definidos, y luego incorporar pacientes, registros clínicos, facturación y analítica según prioridades. Antes de manejar datos reales se deben concretar los controles de seguridad, retención, residencia y acceso con los responsables de cumplimiento de HealthCore.
+
+## 7. Analizador de incidencias: implementación actual
+
+El repositorio contiene un analizador acotado de incidencias en `scripts/incident_analyzer/`. Es una utilidad Python ejecutable separadamente, no forma todavía parte del backend central propuesto en `services/healthcore-api/` y no sustituye la arquitectura de dominios anterior. El contrato CSV y sus catálogos están definidos en `BRIEFING.md`; el dataset de referencia es ficticio y contiene 100 registros.
+
+### Componentes y flujo
+
+```text
+CSV de entrada
+  ├─ CLI: scripts/analyze.py -> scripts.incident_analyzer.analyzer
+  └─ API FastAPI: POST /api/incidents/analyze
+       └─ análisis por filas -> métricas agregadas + errores de calidad
+                                └─ GET /api/incidents/results/export -> results.csv
+Frontend Next.js: uis/backoffice -> proxy same-origin hacia la API
+```
+
+- La CLI usa `csv.DictReader` de forma secuencial; expone JSON, CSV agregado sin PII y, opcionalmente, errores JSONL. Para mantener memoria acotada cuando hay muchos rechazos, se deben transmitir los errores (`--errors-jsonl`) en lugar de acumularlos.
+- La API recibe un único CSV multipart y aplica controles de tamaño, extensión y MIME. El parser evita `UploadFile` y no crea temporales de aplicación. Devuelve errores con fila y motivo —sin ID de incidencia— junto con métricas y el CSV agregado codificado en Base64.
+- El middleware de autenticación de despliegue debe poblar `request.state.authenticated_user_id` y `request.state.authenticated_role`. La identidad no se toma de headers aportados por el cliente. Los roles permitidos por defecto son `postventa` y `admin`.
+- La auditoría contiene timestamp UTC, solicitante autenticado, rol y totales procesados/válidos/rechazados. Para producción, conectar `audit_writer` a un repositorio protegido y definir control de acceso, integridad y retención por jurisdicción. La aplicación no persiste el CSV ni incluye datos de entrada en logs.
+- La salida del analizador descarta `description` y no exporta `customer_id` ni `customer_email`. La CLI puede emitir `incident_id` en detalles de rechazo, por lo que sus destinos deben protegerse; la respuesta API omite ese identificador.
+
+### Ejecución y comprobación de carga
+
+Las instrucciones de instalación y uso están en `scripts/incident_analyzer/README.md` y en el README raíz. El servicio también se expone desde `services/api/main.py` sin duplicar el núcleo de análisis. Tras un análisis válido, `GET /api/incidents/results/export` descarga el último agregado como `results.csv`; el último resultado se conserva en memoria del proceso. La UI `uis/backoffice/` presenta métricas y desgloses y ofrece esa descarga. En desarrollo, el rewrite de Next usa `INCIDENT_API_ORIGIN` o `http://127.0.0.1:8000`. La prueba de carga `python -m scripts.incident_analyzer.benchmark` genera un millón de filas sintéticas incrementalmente en un directorio temporal, ejecuta el análisis sin acumular errores, comprueba un sentinel de fuga y mide tiempo, throughput, RSS pico y memoria Python trazada. El fichero temporal se elimina al terminar.
+
+El contrato solicitado `INC-XXXXX` permite como máximo 100.000 IDs distintos. Para un benchmark de 1.000.000 de filas, el generador repite IDs después de alcanzar ese máximo, lo que produce rechazos por duplicado; el benchmark informa ese límite en su resultado. Si el negocio exige un millón de incidencias únicas, deberá aprobarse una ampliación del contrato (por ejemplo, más dígitos) antes de tomar ese conteo como carga de registros válidos.
+
+La UI de analítica implementada es `uis/backoffice/`. La app existente `uis/talent-pipeline-tracker/` sigue siendo un tracker de candidatos, producto separado que no se presenta como panel del analizador. La UI del analizador consume la API mediante proxy same-origin y muestra resultados agregados y errores de calidad; antes de producción deben revisarse autenticación, autorización y el ámbito de acceso a la descarga.
+
+Estos componentes son una implementación académica y no acreditan por sí solos cumplimiento HIPAA o UK GDPR. Antes de procesar datos reales se requieren evaluación de cumplimiento, autenticación/autorización productiva, infraestructura aprobada y definición de residencia y retención.

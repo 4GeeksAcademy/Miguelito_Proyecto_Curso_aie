@@ -304,6 +304,54 @@ ai-engineering-company-project-monorepo/
 
 ## Links
 
+## HealthCore Incident Analyzer
+
+The repository includes `data/incidents-HEALTHCORE.csv` and a Python analyzer. The analyzer supports streaming CSV input, drops `description`, and never emits `customer_id` or `customer_email`. Do not use real patient/customer data for demos or local tests.
+
+### CLI
+
+From the repository root:
+
+```bash
+python scripts/analyze.py data/incidents-HEALTHCORE.csv \
+	--json-out /tmp/incident-summary.json \
+	--aggregate-csv /tmp/incident-summary.csv \
+	--errors-jsonl /tmp/incident-errors.jsonl
+```
+
+JSON is also printed to stdout. `--errors-jsonl` streams row/reason/incident ID rejection metadata and avoids retaining all rejections in memory; it does not contain customer IDs, emails, or descriptions. Use only access-controlled destinations for any output that includes incident IDs.
+
+### API
+
+```bash
+python -m pip install -r scripts/incident_analyzer/requirements.txt
+uvicorn scripts.incident_analyzer.api:app --host 127.0.0.1 --port 8000
+```
+
+Send one `.csv` file in the multipart field `file` to `POST /api/incidents/analyze`. The default upload limit is 10 MiB. The response contains aggregate metrics, row/reason validation errors, and a Base64 CSV download payload. Before deployment, configure trusted authentication middleware to populate `request.state.authenticated_user_id` and `request.state.authenticated_role`; client headers are not trusted as identity. Configure server/proxy body limits and a jurisdiction-appropriate protected audit sink. See [`scripts/incident_analyzer/README.md`](./scripts/incident_analyzer/README.md).
+
+### UI
+
+The HealthCore incident analyzer UI is available in `uis/backoffice/`. Start it from that directory with `npm install` and `npm run dev`; the Next.js rewrites proxy `/api/incidents/*` to `http://127.0.0.1:8000` by default. Set the server-side `INCIDENT_API_ORIGIN` to change that backend origin. The existing `uis/talent-pipeline-tracker/` is a separate talent application. Do not expose API credentials or secrets through `NEXT_PUBLIC_*` variables.
+
+### Synthetic benchmark
+
+Run the one-million-row load test (temporary input is removed automatically):
+
+```bash
+python -m scripts.incident_analyzer.benchmark
+```
+
+For a quick smoke run, use `--records 10000`; to save a minimized JSON report, add `--report /tmp/incident-benchmark.json`. The benchmark reports elapsed time, throughput, peak RSS and traced Python memory and fails if its PII sentinel appears in output. The current required `INC-XXXXX` format permits at most 100,000 distinct IDs, so duplicate rejection is expected beyond that count; this is explicitly documented by the benchmark rather than hidden.
+
+Run analyzer/API tests with `python -m pytest -q scripts/incident_analyzer`.
+
+See [`docs/ARCHITECTURE_PROPOSAL.md`](./docs/ARCHITECTURE_PROPOSAL.md) for how this implemented utility relates to the proposed HealthCore architecture.
+
+---
+
+## Links
+
 - [4Geeks Academy — AI Engineering](https://4geeksacademy.com/es/programas-de-carrera/ingenieria-ia)
 - [How to start a coding project](https://4geeks.com/lesson/how-to-start-a-project)
 
