@@ -3,8 +3,8 @@ import Link from "next/link";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Analizador de incidencias | HealthCore",
-  description: "Análisis agregado y minimizado de incidencias HealthCore.",
+  title: "HealthCore Backoffice",
+  description: "Herramientas internas de operaciones de HealthCore.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -19,6 +19,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             </Link>
             <p className="nav-label">OPERACIONES</p>
             <Link className="nav-link" href="/incidents">Analizador de incidencias</Link>
+            <Link className="nav-link" href="/suppliers">Proveedores</Link>
             <div className="side-context"><span /> Datos sintéticos y agregados</div>
             <div className="side-footer"><strong>12 sedes</strong><br />Estados Unidos · Reino Unido</div>
           </aside>

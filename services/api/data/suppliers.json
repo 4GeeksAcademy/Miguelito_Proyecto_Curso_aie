@@ -1,0 +1,74 @@
+{
+  "suppliers": {
+    "1": {
+      "name": "MedLine Clinical Supplies",
+      "country": "USA",
+      "categories": [
+        "medical_supplies",
+        "diagnostics"
+      ],
+      "rate": 145.5,
+      "status": "active",
+      "updated_at": "2026-11-27T19:46:09.284760+00:00",
+      "id": 1
+    },
+    "2": {
+      "name": "Thames Valley Pharma Ltd",
+      "country": "UK",
+      "categories": [
+        "pharma",
+        "medical_supplies"
+      ],
+      "rate": 210.0,
+      "status": "active",
+      "updated_at": "2026-11-27T19:46:10.183026+00:00",
+      "id": 2
+    },
+    "3": {
+      "name": "Apex Diagnostics Corp",
+      "country": "USA",
+      "categories": [
+        "diagnostics"
+      ],
+      "rate": 320.75,
+      "status": "active",
+      "updated_at": "2026-11-27T19:46:10.186322+00:00",
+      "id": 3
+    },
+    "4": {
+      "name": "Britannia Health IT",
+      "country": "UK",
+      "categories": [
+        "it_infrastructure",
+        "ehr_services"
+      ],
+      "rate": 480.0,
+      "status": "active",
+      "updated_at": "2026-11-27T19:46:10.189209+00:00",
+      "id": 4
+    },
+    "5": {
+      "name": "Sunbelt Surgical & Lab",
+      "country": "USA",
+      "categories": [
+        "medical_supplies"
+      ],
+      "rate": 95.0,
+      "status": "suspended",
+      "updated_at": "2026-11-27T19:46:10.192194+00:00",
+      "id": 5
+    },
+    "6": {
+      "name": "Albion BioLogistics",
+      "country": "UK",
+      "categories": [
+        "pharma",
+        "diagnostics"
+      ],
+      "rate": 175.25,
+      "status": "active",
+      "updated_at": "2026-11-27T19:46:10.195958+00:00",
+      "id": 6
+    }
+  }
+}

@@ -1,2 +1,8 @@
 .env
 node_modules
+
+# Build & cache
+.next/
+**/.next/
+.venv/
+**/.venv/

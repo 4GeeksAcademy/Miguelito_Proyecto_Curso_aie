@@ -59,6 +59,33 @@ El repositorio contiene una base de monorepo con documentación de HealthCore, u
 - Diseñar integraciones de manera progresiva y documentar supuestos, límites y procedencia de los datos.
 - Mantener revisión humana para decisiones y recomendaciones clínicas.
 
+## Directorio de Proveedores (Compras y Suministros)
+
+El Directorio de Proveedores registra proveedores de productos y servicios sanitarios o tecnológicos para las operaciones de HealthCore en Estados Unidos y Reino Unido. El contrato del modelo `Supplier` es:
+
+| Campo | Tipo | Requisito |
+| --- | --- | --- |
+| `id` | `int` | Identificador asignado automáticamente por TinyDB. |
+| `name` | `str` | Nombre comercial del proveedor; no puede estar vacío. |
+| `country` | `str` | País de operación; ejemplos válidos en los datos iniciales: `USA` y `UK`. |
+| `categories` | `list[str]` | Una o más categorías del catálogo válido indicado abajo. |
+| `rate` | `float` | Tarifa base/unitaria vigente en USD o GBP; debe ser estrictamente mayor que cero. |
+| `status` | `Enum` | Estado del proveedor: `"active"` o `"suspended"`. El valor predeterminado es `"active"`. |
+| `updated_at` | `str` | Timestamp ISO 8601 en UTC, generado automáticamente por el servidor y no enviado por el cliente. |
+
+Las categorías válidas son `"medical_supplies"`, `"pharma"`, `"diagnostics"`, `"it_infrastructure"` y `"ehr_services"`.
+
+### Proveedores iniciales
+
+| Nombre | País | Categorías | Tarifa | Estado |
+| --- | --- | --- | ---: | --- |
+| MedLine Clinical Supplies | `USA` | `medical_supplies`, `diagnostics` | 145.50 | `active` |
+| Thames Valley Pharma Ltd | `UK` | `pharma`, `medical_supplies` | 210.00 | `active` |
+| Apex Diagnostics Corp | `USA` | `diagnostics` | 320.75 | `active` |
+| Britannia Health IT | `UK` | `it_infrastructure`, `ehr_services` | 480.00 | `active` |
+| Sunbelt Surgical & Lab | `USA` | `medical_supplies` | 95.00 | `suspended` |
+| Albion BioLogistics | `UK` | `pharma`, `diagnostics` | 175.25 | `active` |
+
 ## Especificación del Analizador de Incidencias
 
 ### Contrato de datos CSV
