@@ -59,6 +59,42 @@ El repositorio contiene una base de monorepo con documentación de HealthCore, u
 - Diseñar integraciones de manera progresiva y documentar supuestos, límites y procedencia de los datos.
 - Mantener revisión humana para decisiones y recomendaciones clínicas.
 
+## Especificación del Analizador de Incidencias
+
+### Contrato de datos CSV
+
+El fichero de entrada usa una fila de encabezados y estas columnas, en este orden:
+
+| Campo | Requisito y formato |
+| --- | --- |
+| `incident_id` | Obligatorio; identificador con formato `INC-XXXXX` (cinco dígitos en los datos de referencia). Debe ser único en el fichero. |
+| `created_at` | Obligatorio; fecha y hora ISO 8601. |
+| `clinic_id` | Obligatorio; identificador de sede con prefijo `US-*` o `UK-*`. |
+| `category` | Obligatorio; uno de los valores del catálogo indicado abajo. |
+| `status` | Obligatorio; uno de los estados indicados abajo. |
+| `priority` | Obligatorio; `baja`, `media`, `alta` o `critica`. |
+| `customer_id` | Obligatorio; identificador del cliente. En los datos sintéticos se usan identificadores ficticios. |
+| `customer_email` | Obligatorio; dirección con formato de correo electrónico. En los datos sintéticos se usa el dominio reservado `example.invalid`. |
+| `resolved_at` | Opcional, salvo que `status` sea `cerrado`, en cuyo caso es obligatorio; fecha y hora ISO 8601 no anterior a `created_at`. |
+| `satisfaction_score` | Opcional; entero entre `1` y `5`. Solo se incluye en el índice medio cuando el registro válido tiene estado `cerrado` y una puntuación registrada. |
+| `description` | Opcional; texto libre que puede contener información sensible. No debe incluir datos reales en muestras, pruebas ni demostraciones; el analizador debe descartarlo de las salidas. |
+
+Las categorías válidas (`category`) son `queja_atencion`, `solicitud_cita`, `solicitud_documentacion`, `fallo_facturacion` y `fallo_operativo`. Los estados válidos (`status`) son `abierto`, `cerrado`, `descartado` y `en_progreso`.
+
+Un registro se considera inválido/corrupto y se excluye de las métricas si falta un campo obligatorio o su valor está vacío; `category`, `status` o `priority` no pertenece a su catálogo; una fecha no es válida o `resolved_at` es anterior a `created_at`; `satisfaction_score` no es un entero entre 1 y 5; `customer_email` no tiene formato válido; o `incident_id` está duplicado. Los rechazos deben poder auditarse por número de fila, identificador si está disponible y motivo, sin divulgar `customer_id`, `customer_email` ni `description`.
+
+### Valores de control del dataset de referencia
+
+La muestra sintética `data/incidents-HEALTHCORE.csv` contiene 100 registros de datos: 92 válidos y 8 inválidos/corruptos intencionales. Los conteos esperados son:
+
+- Total leídos: **100** | Válidos: **92** | Inválidos/corruptos: **8**.
+- Categorías válidas: `solicitud_cita` (30), `fallo_facturacion` (22), `queja_atencion` (18), `fallo_operativo` (12), `solicitud_documentacion` (10).
+- Estados válidos: `cerrado` (55), `en_progreso` (20), `abierto` (12), `descartado` (5).
+- Tasa de resolución esperada: **59.78%** (`55 / 92`), considerando como resueltos los registros `cerrado`.
+- Índice de satisfacción medio esperado: **3.00** en los 55 registros válidos `cerrado` con puntuación registrada (11 puntuaciones de cada valor entero entre 1 y 5).
+
+Todos los identificadores, correos, fechas y descripciones de la muestra son ficticios; no se incluyen datos reales de pacientes o clientes.
+
 ## Próximos pasos sugeridos
 
 1. Acordar y documentar el alcance del producto que se construirá primero; resolver la relación entre el tracker de candidatos existente y la visión de HealthCore.
