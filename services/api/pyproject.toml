@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "healthcore-api"
+version = "0.1.0"
+description = "HealthCore API services and supplier directory"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic",
+    "tinydb",
+]
+
+[project.scripts]
+seed = "seed:main"
+
+[tool.setuptools]
+py-modules = ["database", "models", "seed"]
